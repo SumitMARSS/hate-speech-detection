@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hate Speech Detection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" />
+    <style>
+        body {
+            font-family: "Raleway", sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: linear-gradient(333deg, rgba(34, 193, 195, 1) 0%, rgba(224, 45, 253, 1) 100%);
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            width: 80%;
+            height: 70vh;
+        }
+
+        h1 {
+            font-size: 60px;
+        }
+
+        .search-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-bar {
+            height: auto;
+            min-height: 100px; /* Set a minimum height for the search bar */
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 24px;
+            width: 70%;
+            resize: vertical; /* Allow vertical resizing */
+            
+        }
+
+        .search-button {
+            background-color: #e50914;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .but {
+            display: flex;
+            gap: 500px;
+            justify-content: space-between; /* This will push the elements to opposite ends of the container */
+            align-items: center; /* Optional - align elements vertically in the center */
+            height: 100px; /* Optional - set the height of the container as needed */
+            }
+
+            .left-element {
+            background-color: #E57373;
+            padding: 10px;
+            }
+
+            .right-element {
+                background-color: #1aa65b;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 24px;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hate Speech Detection</h1>
+        <div >
+            <form class="search-container" method="POST" actions = "/predict">
+
+                <textarea class="search-bar" name="email-content"  placeholder="Enter text for hate speech detection">
+                    {{ message_text }}
+                </textarea>
+                <div class="but">
+                    <button class="search-button"  class="left-element">Detect</button>
+                    <a href="/" class="right-element">Reset</a>
+                </div>
+        
+            </form>
+        </div>
+        {% if prediction == 1  %}
+            <h2>SPAM</h2>
+        {% elif prediction == 0  %}
+            <h2>NOT SPAM</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
