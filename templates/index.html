@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hate Speech Detection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" />
+    <style>
+        body {
+            font-family: "Raleway", sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: linear-gradient(333deg, rgba(34, 193, 195, 1) 0%, rgba(224, 45, 253, 1) 100%);
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            width: 80%;
+            height: 70vh;
+            box-shadow: 20px 20px 10px lightblue;
+        }
+
+        h1 {
+            font-size: 60px;
+            text-shadow: 3px 3px 2px #0000FF, 0 0 25px darkblue;
+        }
+
+        .search-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-bar {
+            height: auto;
+            min-height: 100px; /* Set a minimum height for the search bar */
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 24px;
+            width: 70%;
+            resize: vertical; /* Allow vertical resizing */
+            box-shadow: 10px 10px 10px rgb(139, 133, 137);
+        }
+
+        .search-button {
+            background-color: #e50914;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .but {
+            display: flex;
+            gap: 500px;
+            justify-content: space-between; /* This will push the elements to opposite ends of the container */
+            align-items: center; /* Optional - align elements vertically in the center */
+            height: 100px; /* Optional - set the height of the container as needed */
+            }
+
+            .left-element {
+                background-color: #E57373;
+                padding: 10px;
+            }
+
+            .right-element {
+                background-color: #1aa65b;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 24px;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+            .ans_script{
+                font-family: "Raleway", sans-serif;
+                font-size: 30px;
+                background: linear-gradient(to top, red, yellow);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+            .circle1 {
+                position: absolute;
+                top: 5%;
+                left: 5%;
+                width: 8em;
+                height: 8em;
+                border-radius: 50%;
+                box-shadow: 0 0 50px #e3728c;
+                background: linear-gradient(-25deg, #d84869, #f46641);
+                animation: circle1Animate 30s infinite;
+            }
+            
+            @keyframes circle1Animate {
+                25% {
+                    top: 5%;
+                    left: 4%;
+                    background: linear-gradient(-25deg, #d84869, #f46641);
+                }
+                75% {
+                    top: 70%; 
+                    left: 4%; 
+                    background: linear-gradient(-25deg, #5648d8, #8641f4);
+                }
+            }
+            
+            .circle2 {
+                position: absolute;
+                bottom: 5%;
+                right: 5%;
+                width: 8em;
+                height: 8em;
+                border-radius: 50%;
+                box-shadow: 0 0 50px #5648d8;
+                background: linear-gradient(-25deg, #5648d8, #8641f4);
+                animation: circle2Animate 30s infinite;
+            }
+            @keyframes circle2Animate {
+                25%{
+                    bottom: 5%;
+                    right: 4%;
+                    background: linear-gradient(-25deg, #5648d8, #8641f4);
+                }
+                75%{
+                    bottom: 70%;
+                    right: 4%;
+                    background: linear-gradient(-25deg, #d84869, #f46641);
+                }
+            }
+    </style>
+</head>
+<body>
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="container">
+        <h1>Hate Speech Detection</h1>
+        <div >
+            <form class="search-container"  method="POST" action = "/predict">
+
+                <textarea class="search-bar" name="content"  placeholder="Enter text for hate speech detection">{{ message_text }}</textarea>
+                
+                <div class="but">
+                    <button class="search-button" >Detect</button>
+                    <a href="/" class="right-element">Reset</a>
+                </div>
+        
+            </form>
+        </div>
+        <div class="ans_script">{{ prediction }}</div>
+    </div>
+</body>
+</html>
