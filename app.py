@@ -7,7 +7,7 @@ model = pickle.load(open("templates/models/new_clf.pkl", "rb"))
 app = Flask(__name__)
 #says about home page
 @app.route("/")
-def home():
+def home(): 
     return render_template("index.html")
 
 @app.route("/predict", methods = ['POST']) # only get when click on button
