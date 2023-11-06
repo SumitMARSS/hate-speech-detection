@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,10 +28,12 @@
             color: #fff;
             width: 80%;
             height: 70vh;
+            box-shadow: 20px 20px 10px lightblue;
         }
 
         h1 {
             font-size: 60px;
+            text-shadow: 3px 3px 2px #0000FF, 0 0 25px darkblue;
         }
 
         .search-container {
@@ -52,7 +53,7 @@
             font-size: 24px;
             width: 70%;
             resize: vertical; /* Allow vertical resizing */
-            
+            box-shadow: 10px 10px 10px rgb(139, 133, 137);
         }
 
         .search-button {
@@ -74,8 +75,8 @@
             }
 
             .left-element {
-            background-color: #E57373;
-            padding: 10px;
+                background-color: #E57373;
+                padding: 10px;
             }
 
             .right-element {
@@ -88,29 +89,82 @@
                 cursor: pointer;
                 margin-top: 20px;
             }
+            .ans_script{
+                font-family: "Raleway", sans-serif;
+                font-size: 30px;
+                background: linear-gradient(to top, red, yellow);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+            .circle1 {
+                position: absolute;
+                top: 5%;
+                left: 5%;
+                width: 8em;
+                height: 8em;
+                border-radius: 50%;
+                box-shadow: 0 0 50px #e3728c;
+                background: linear-gradient(-25deg, #d84869, #f46641);
+                animation: circle1Animate 30s infinite;
+            }
+
+            @keyframes circle1Animate {
+                25% {
+                    top: 5%;
+                    left: 4%;
+                    background: linear-gradient(-25deg, #d84869, #f46641);
+                }
+                75% {
+                    top: 70%; 
+                    left: 4%; 
+                    background: linear-gradient(-25deg, #5648d8, #8641f4);
+                }
+            }
+
+            .circle2 {
+                position: absolute;
+                bottom: 5%;
+                right: 5%;
+                width: 8em;
+                height: 8em;
+                border-radius: 50%;
+                box-shadow: 0 0 50px #5648d8;
+                background: linear-gradient(-25deg, #5648d8, #8641f4);
+                animation: circle2Animate 30s infinite;
+            }
+            @keyframes circle2Animate {
+                25%{
+                    bottom: 5%;
+                    right: 4%;
+                    background: linear-gradient(-25deg, #5648d8, #8641f4);
+                }
+                75%{
+                    bottom: 70%;
+                    right: 4%;
+                    background: linear-gradient(-25deg, #d84869, #f46641);
+                }
+            }
     </style>
 </head>
 <body>
+    <div class="circle1"></div>
+    <div class="circle2"></div>
     <div class="container">
         <h1>Hate Speech Detection</h1>
         <div >
-            <form class="search-container" method="POST" actions = "/predict">
+            <form class="search-container"  method="POST" action = "/predict">
 
-                <textarea class="search-bar" name="email-content"  placeholder="Enter text for hate speech detection">
-                    {{ message_text }}
-                </textarea>
+                <textarea class="search-bar" name="content"  placeholder="Enter text for hate speech detection">{{ message_text }}</textarea>
+
                 <div class="but">
-                    <button class="search-button"  class="left-element">Detect</button>
+                    <button class="search-button" >Detect</button>
                     <a href="/" class="right-element">Reset</a>
                 </div>
-        
+
             </form>
         </div>
-        {% if prediction == 1  %}
-            <h2>SPAM</h2>
-        {% elif prediction == 0  %}
-            <h2>NOT SPAM</h2>
-        {% endif %}
+        <div class="ans_script">{{ prediction }}</div>
     </div>
 </body>
 </html>
