@@ -32,10 +32,10 @@
     Web crawling is the process of automatically collecting information from the web. This repository includes tools for web crawling to gather data for text classification tasks.
 
 ### Usage
-    Clone the repository:
+    Clone the repository: git clone https://github.com/your-username/text-classification.git
 
 ### Copy code
-    git clone https://github.com/your-username/text-classification.git
+      https://colab.research.google.com/drive/1OVzL2FkXGIUGI_AgF-Og3s4BTMPAdG6b?usp=sharing
 ### Install dependencies:
     Copy code
     pip install -r requirements.txt
